@@ -1,0 +1,752 @@
+% !TEX program = xelatex
+\documentclass[9pt]{extarticle}
+\usepackage[a4paper,margin=10mm,top=9mm,bottom=9mm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{fontspec}
+\usepackage[table]{xcolor}
+\usepackage{booktabs,multirow,multicol,needspace,array}
+\usepackage{microtype}
+
+\setmainfont{DejaVu Sans}
+\setsansfont{DejaVu Sans}
+\newfontfamily\convfont[Scale=0.80]{DejaVu Sans Condensed}
+\newfontfamily\eshffont[Scale=0.97]{DejaVu Sans Condensed}
+\newfontfamily\farsifont[
+  Path=./fonts/, Extension=.ttf,
+  UprightFont=Vazirmatn-Regular, BoldFont=Vazirmatn-Bold,
+  Script=Arabic, Language=Persian]{Vazirmatn}
+\newfontfamily\parenfont{DejaVu Sans}
+
+% ---- black & white palette (prints well in grayscale) ----
+\definecolor{hdr}{gray}{0.80}
+\definecolor{hdr2}{gray}{0.90}
+\definecolor{zebra}{gray}{0.95}
+\definecolor{ink}{gray}{0.0}
+\pagecolor{white}\color{black}
+
+\TeXXeTstate=1
+\setlength{\parindent}{0pt}
+\setlength{\columnsep}{6mm}
+\setlength{\columnseprule}{0.3pt}
+\renewcommand{\arraystretch}{1.1}
+\setlength{\heavyrulewidth}{0.9pt}\setlength{\lightrulewidth}{0.5pt}\setlength{\cmidrulewidth}{0.3pt}
+
+\newcommand{\fa}[1]{{\farsifont\beginR #1\endR}}
+\newcommand{\pa}[1]{{\parenfont )}#1{\parenfont (}}
+\newcommand{\note}[1]{\par\vspace{1pt}{\farsifont\small\noindent\leftskip=0pt plus 1fil\parfillskip=0pt\relax\beginR #1\endR\par}}
+\newcommand{\ptext}[1]{\par\vspace{1pt}{\farsifont\noindent\leftskip=0pt plus 1fil\parfillskip=0pt\relax\beginR #1\endR\par}}
+
+% part header: black bar, white text
+\newcommand{\tpart}[2]{\par\Needspace{12\baselineskip}\vspace{4pt}\noindent\colorbox{black}{\parbox{\dimexpr\linewidth-2\fboxsep}{\color{white}\large\bfseries #1\hfill\fa{\bfseries #2}}}\par\vspace{3pt}}
+% section header: gray bar
+\newcommand{\sect}[2]{\par\Needspace{8\baselineskip}\vspace{3pt}\noindent\colorbox{hdr}{\parbox{\dimexpr\linewidth-2\fboxsep}{\bfseries #1\hfill\fa{\bfseries #2}}}\par\vspace{2pt}}
+\newcommand{\convhead}[2]{\par\Needspace{8\baselineskip}\vspace{2pt}\noindent{\bfseries\small #1}\hfill{\small\fa{\bfseries #2}}\par\vspace{-1pt}\noindent\rule{\linewidth}{0.5pt}\par\vspace{1pt}}
+\newcommand{\convnote}[1]{\par\vspace{1pt}{\farsifont\scriptsize\noindent\leftskip=0pt plus 1fil\parfillskip=0pt\relax\beginR #1\endR\par}}
+
+\begin{document}
+\pagestyle{empty}
+
+\begin{center}
+  {\LARGE\bfseries HVAC Reference Tables}\\[2pt]
+  {\large\fa{\bfseries جداول مرجع تهویه مطبوع \pa{مناسب پرینت سیاه و سفید}}}
+\end{center}
+
+%==================== PART 1 ====================
+\tpart{1.\ Thermodynamic Table}{۱. جدول ترمودینامیکی}
+
+\sect{Saturation Pressure of Water}{فشار اشباع آب}
+\begin{center}
+{\renewcommand{\arraystretch}{1.25}\setlength{\tabcolsep}{9pt}
+\begin{tabular}{@{}rrrrrr@{}}\toprule
+\rowcolor{hdr}\textbf{$T$ ($^\circ$F)} & \textbf{$T$ ($^\circ$C)} & \textbf{$P_{sat}$ (psia)} & \textbf{$P_{sat}$ (kPa)} & \textbf{ft\,H$_2$O} & \textbf{m\,H$_2$O}\\ \midrule
+32 & 0 & 0.089 & 0.61 & 0.21 & 0.06\\
+\rowcolor{zebra}40 & 4.4 & 0.121 & 0.83 & 0.28 & 0.09\\
+50 & 10 & 0.178 & 1.23 & 0.41 & 0.13\\
+\rowcolor{zebra}60 & 15.6 & 0.256 & 1.77 & 0.59 & 0.18\\
+70 & 21.1 & 0.363 & 2.50 & 0.84 & 0.26\\
+\rowcolor{zebra}80 & 26.7 & 0.507 & 3.50 & 1.17 & 0.36\\
+90 & 32.2 & 0.699 & 4.82 & 1.61 & 0.49\\
+\rowcolor{zebra}100 & 37.8 & 0.950 & 6.55 & 2.19 & 0.67\\
+110 & 43.3 & 1.276 & 8.80 & 2.94 & 0.90\\
+\rowcolor{zebra}120 & 48.9 & 1.694 & 11.68 & 3.91 & 1.19\\
+130 & 54.4 & 2.226 & 15.35 & 5.13 & 1.57\\
+\rowcolor{zebra}140 & 60 & 2.891 & 19.93 & 6.67 & 2.03\\
+150 & 65.6 & 3.72 & 25.65 & 8.58 & 2.62\\
+\rowcolor{zebra}160 & 71.1 & 4.73 & 32.61 & 10.9 & 3.33\\
+170 & 76.7 & 6.00$^{\dagger}$ & 41.36 & 13.8$^{\dagger}$ & 4.22\\
+\rowcolor{zebra}180 & 82.2 & 7.51 & 51.78 & 17.3 & 5.28\\
+190 & 87.8 & 9.35$^{\dagger}$ & 64.46 & 21.6$^{\dagger}$ & 6.57\\
+\rowcolor{zebra}200 & 93.3 & 11.53 & 79.50 & 26.6 & 8.11\\
+212 & 100 & 14.70 & 101.35 & 33.9 & 10.34\\
+\bottomrule
+\end{tabular}}
+\end{center}
+\note{ft\,H$_2$O و m\,H$_2$O ستون‌های «هد» معادل فشار اشباع‌اند \pa{آب با چگالی $62.4\ \mathrm{lb/ft^3}$}: $h=P_{sat}/0.4335\ \mathrm{ft}$ \;|\; $1\ \mathrm{ft}=0.3048\ \mathrm{m}$.}
+\note{$^{\dagger}$: مقدار جدول اصلی \pa{۱۷۰°F: ۵٫۸۹ psia و ۱۹۰°F: ۹٫۲۱ psia} حدود ۱٫۵ تا ۱٫۸ درصد کمتر از مقدار واقعی بود. این دو ردیف با معادلهٔ دقیق فشار اشباع آب اصلاح شده‌اند؛ بقیهٔ ردیف‌ها با اختلاف کمتر از ۰٫۶ درصد تأیید شدند.}
+
+\sect{How these values are used}{کاربرد در فرمول‌ها}
+\begin{center}
+$\displaystyle \omega=0.622\,\frac{P_v}{P_{total}-P_v}\qquad
+H_v=\frac{P_v}{\rho g}\ \ \mathrm{[m]}\qquad
+Z_{s,max}=H_a-\left(NPSH_R+0.5\right)-H_v-H_F$
+\end{center}
+\note{$P_v$ فشار بخار آب در دمای کار \pa{برای پمپ: دمای آب؛ برای هوا: فشار اشباع در دمای نقطهٔ شبنم}. برای $T$ بین ردیف‌ها درون‌یابی خطی کافی است \pa{اختلاف کمتر از ۱٪} \;|\; فشار جو استاندارد $P_a=14.696\ \mathrm{psia}=101.325\ \mathrm{kPa}=10.34\ \mathrm{m\,H_2O}$.}
+
+%==================== PART 2 ====================
+\clearpage
+\tpart{2.\ Effective Sensible Heat Factor \& Apparatus Dew Point}{۲. جدول ESHF و نقطهٔ شبنم دستگاه}
+
+\note{اگر ESHF و شرایط اتاق مشخص باشد، دمای نقطهٔ شبنم دستگاه \pa{ADP} از این جدول خوانده می‌شود. ستون اول \pa{$\mathrm{ESHF}=1.00$} دمای شبنم اتاق را می‌دهد. شرایط اتاق: دمای خشک DB، رطوبت نسبی RH، دمای تر WB و نسبت رطوبت $W$.}
+\begin{center}
+$\displaystyle \mathrm{ESHF}=\frac{1}{1+0.628\,\dfrac{W_{rm}-W_{adp}}{t_{rm}-t_{adp}}}
+=\frac{0.244\,(t_{rm}-t_{adp})}{0.244\,(t_{rm}-t_{adp})+\dfrac{1076}{7000}\,(W_{rm}-W_{adp})}$
+\end{center}
+\note{برای شرایط اتاقی که در جدول نیست از همین فرمول استفاده کنید: $W$ بر حسب grain/lb و $t$ بر حسب $^\circ$F \pa{$W_{adp}$ نسبت رطوبت هوای اشباع در دمای ADP است}. مقدار ردیف‌هایی که کمتر از ۹ ستون دارند همان محدودیت «ناحیهٔ خاکستری» جدول اصلی است. آخرین عدد هر ردیف \pa{پررنگ} کمترین ESHF ممکن بدون گرمایش مجدد \pa{reheat} است \pa{خطی که منحنی اشباع را قطع می‌کند}.}
+\vspace{3pt}
+
+{\eshffont
+\setlength{\tabcolsep}{2.4pt}
+\renewcommand{\arraystretch}{1.12}
+\Needspace{20\baselineskip}
+\noindent\begin{minipage}[t]{0.5\linewidth}\centering
+\begin{tabular}{@{}>{\raggedleft\arraybackslash}p{0.55cm}>{\raggedleft\arraybackslash}p{0.8cm}>{\raggedleft\arraybackslash}p{0.95cm}|l|*{9}{r}@{}}\toprule
+\rowcolor{hdr}\multicolumn{13}{@{}l@{}}{\textbf{Room dry bulb = 90$^\circ$F}}\\
+\rowcolor{hdr2}\shortstack{RH\\{\tiny(\%)}} & \shortstack{WB\\{\tiny($^\circ$F)}} & \shortstack{W\\{\tiny(gr/lb)}} & & \multicolumn{9}{c}{\tiny ESHF \ / \ ADP ($^\circ$F)}\\ \midrule
+20 & 62.7 & 42.0 & ESHF & 1.00 & .96 & .92 & .90 & .88 & .86 & .84 & .82 & \textbf{.81}\\
+ & & & ADP & 43.5 & 41 & 39 & 37 & 35 & 32 & 29 & 24 & \textbf{22}\\ \midrule
+\rowcolor{zebra}25 & 65.1 & 52.7 & ESHF & 1.00 & .96 & .92 & .88 & .84 & .82 & .80 & .78 & \textbf{.75}\\
+\rowcolor{zebra} & & & ADP & 49.6 & 48 & 46 & 44 & 41 & 39 & 36 & 32 & \textbf{22}\\ \midrule
+30 & 67.3 & 63.6 & ESHF & 1.00 & .92 & .87 & .83 & .80 & .76 & .74 & .72 & \textbf{.70}\\
+ & & & ADP & 54.5 & 52 & 50 & 48 & 46 & 42 & 38 & 34 & \textbf{24}\\ \midrule
+\rowcolor{zebra}35 & 69.3 & 74.2 & ESHF & 1.00 & .92 & .85 & .81 & .76 & .73 & .71 & .69 & \textbf{.66}\\
+\rowcolor{zebra} & & & ADP & 58.8 & 57 & 55 & 53 & 50 & 48 & 45 & 42 & \textbf{33}\\ \midrule
+40 & 71.2 & 84.8 & ESHF & 1.00 & .92 & .83 & .78 & .74 & .69 & .66 & .63 & \textbf{.62}\\
+ & & & ADP & 62.4 & 61 & 59 & 57 & 55 & 52 & 48 & 44 & \textbf{40}\\ \midrule
+\rowcolor{zebra}45 & 73.0 & 95.5 & ESHF & 1.00 & .92 & .82 & .76 & .70 & .66 & .62 & .60 & \textbf{.58}\\
+\rowcolor{zebra} & & & ADP & 65.8 & 65 & 63 & 61 & 59 & 56 & 52 & 49 & \textbf{43}\\ \midrule
+50 & 74.9 & 106.4 & ESHF & 1.00 & .92 & .78 & .68 & .64 & .60 & .58 & .56 & \textbf{.54}\\
+ & & & ADP & 68.9 & 68 & 66 & 63 & 61 & 58 & 56 & 53 & \textbf{47}\\ \midrule
+\rowcolor{zebra}55 & 76.7 & 117.5 & ESHF & 1.00 & .92 & .76 & .68 & .64 & .57 & .54 & .52 & \textbf{.50}\\
+\rowcolor{zebra} & & & ADP & 71.6 & 71 & 69 & 67 & 66 & 62 & 59 & 57 & \textbf{50}\\ \midrule
+60 & 78.4 & 128.4 & ESHF & 1.00 & .86 & .68 & .60 & .56 & .52 & .50 & .48 & \textbf{.46}\\
+ & & & ADP & 74.2 & 73 & 71 & 69 & 67 & 64 & 62 & 59 & \textbf{50}\\ \midrule
+\rowcolor{zebra}65 & 80.0 & 139.6 & ESHF & 1.00 & .75 & .68 & .62 & .55 & .50 & .47 & .45 & \textbf{.43}\\
+\rowcolor{zebra} & & & ADP & 76.8 & 75 & 74 & 73 & 71 & 69 & 66 & 64 & \textbf{59}\\ \midrule
+70 & 81.6 & 151.0 & ESHF & 1.00 & .78 & .66 & .60 & .52 & .47 & .43 & .41 & \textbf{.39}\\
+ & & & ADP & 79.0 & 78 & 77 & 76 & 74 & 72 & 69 & 66 & \textbf{58}\\
+\bottomrule\end{tabular}
+\end{minipage}\begin{minipage}[t]{0.5\linewidth}\centering
+\begin{tabular}{@{}>{\raggedleft\arraybackslash}p{0.55cm}>{\raggedleft\arraybackslash}p{0.8cm}>{\raggedleft\arraybackslash}p{0.95cm}|l|*{9}{r}@{}}\toprule
+\rowcolor{hdr}\multicolumn{13}{@{}l@{}}{\textbf{Room dry bulb = 85$^\circ$F}}\\
+\rowcolor{hdr2}\shortstack{RH\\{\tiny(\%)}} & \shortstack{WB\\{\tiny($^\circ$F)}} & \shortstack{W\\{\tiny(gr/lb)}} & & \multicolumn{9}{c}{\tiny ESHF \ / \ ADP ($^\circ$F)}\\ \midrule
+20 & 59.6 & 35.8 & ESHF & 1.00 & .98 & .95 & .92 & .90 & .88 & .87 & .86 & \textbf{.84}\\
+ & & & ADP & 39.4 & 38 & 36 & 34 & 32 & 30 & 28 & 26 & \textbf{22}\\ \midrule
+\rowcolor{zebra}25 & 61.7 & 44.8 & ESHF & 1.00 & .98 & .93 & .90 & .86 & .84 & .82 & .80 & \textbf{.78}\\
+\rowcolor{zebra} & & & ADP & 45.2 & 44 & 42 & 40 & 37 & 35 & 32 & 28 & \textbf{20}\\ \midrule
+30 & 63.7 & 54.1 & ESHF & 1.00 & .94 & .89 & .85 & .81 & .79 & .77 & .75 & \textbf{.73}\\
+ & & & ADP & 50.2 & 48 & 46 & 44 & 40 & 38 & 35 & 31 & \textbf{22}\\ \midrule
+\rowcolor{zebra}35 & 65.5 & 62.9 & ESHF & 1.00 & .92 & .86 & .82 & .78 & .74 & .72 & .70 & \textbf{.69}\\
+\rowcolor{zebra} & & & ADP & 54.1 & 52 & 50 & 48 & 45 & 41 & 38 & 32 & \textbf{27}\\ \midrule
+40 & 67.4 & 71.7 & ESHF & 1.00 & .92 & .84 & .79 & .76 & .73 & .69 & .67 & \textbf{.65}\\
+ & & & ADP & 57.9 & 56 & 54 & 52 & 50 & 48 & 44 & 40 & \textbf{32}\\ \midrule
+\rowcolor{zebra}45 & 69.1 & 81.1 & ESHF & 1.00 & .92 & .83 & .77 & .72 & .68 & .64 & .62 & \textbf{.61}\\
+\rowcolor{zebra} & & & ADP & 61.2 & 60 & 58 & 56 & 54 & 51 & 46 & 41 & \textbf{36}\\ \midrule
+50 & 70.8 & 90.1 & ESHF & 1.00 & .92 & .80 & .73 & .68 & .64 & .61 & .59 & \textbf{.57}\\
+ & & & ADP & 64.2 & 63 & 61 & 59 & 57 & 54 & 51 & 48 & \textbf{39}\\ \midrule
+\rowcolor{zebra}55 & 72.3 & 99.4 & ESHF & 1.00 & .92 & .83 & .73 & .67 & .60 & .57 & .56 & \textbf{.54}\\
+\rowcolor{zebra} & & & ADP & 66.9 & 66 & 65 & 63 & 61 & 57 & 54 & 52 & \textbf{47}\\ \midrule
+60 & 73.9 & 108.8 & ESHF & 1.00 & .92 & .76 & .67 & .61 & .56 & .54 & .52 & \textbf{.50}\\
+ & & & ADP & 69.5 & 69 & 67 & 65 & 63 & 60 & 58 & 55 & \textbf{49}\\ \midrule
+\rowcolor{zebra}65 & 75.5 & 118.2 & ESHF & 1.00 & .88 & .69 & .61 & .56 & .53 & .50 & .48 & \textbf{.47}\\
+\rowcolor{zebra} & & & ADP & 71.9 & 71 & 69 & 67 & 65 & 63 & 61 & 58 & \textbf{54}\\ \midrule
+70 & 77.0 & 127.6 & ESHF & 1.00 & .81 & .63 & .55 & .51 & .49 & .47 & .45 & \textbf{.43}\\
+ & & & ADP & 74.0 & 73 & 71 & 69 & 67 & 66 & 64 & 62 & \textbf{55}\\
+\bottomrule\end{tabular}
+\end{minipage}
+\vspace{8pt}
+\Needspace{20\baselineskip}
+\noindent\begin{minipage}[t]{0.5\linewidth}\centering
+\begin{tabular}{@{}>{\raggedleft\arraybackslash}p{0.55cm}>{\raggedleft\arraybackslash}p{0.8cm}>{\raggedleft\arraybackslash}p{0.95cm}|l|*{9}{r}@{}}\toprule
+\rowcolor{hdr}\multicolumn{13}{@{}l@{}}{\textbf{Room dry bulb = 82$^\circ$F}}\\
+\rowcolor{hdr2}\shortstack{RH\\{\tiny(\%)}} & \shortstack{WB\\{\tiny($^\circ$F)}} & \shortstack{W\\{\tiny(gr/lb)}} & & \multicolumn{9}{c}{\tiny ESHF \ / \ ADP ($^\circ$F)}\\ \midrule
+35 & 63.3 & 57.0 & ESHF & 1.00 & .92 & .88 & .84 & .80 & .76 & .74 & .72 & \textbf{.71}\\
+ & & & ADP & 51.6 & 49 & 48 & 46 & 43 & 39 & 36 & 31 & \textbf{27}\\ \midrule
+\rowcolor{zebra}40 & 65.0 & 65.1 & ESHF & 1.00 & .90 & .87 & .82 & .78 & .74 & .71 & .69 & \textbf{.67}\\
+\rowcolor{zebra} & & & ADP & 55.2 & 53 & 52 & 50 & 48 & 45 & 41 & 38 & \textbf{31}\\ \midrule
+45 & 66.7 & 73.5 & ESHF & 1.00 & .91 & .87 & .80 & .75 & .72 & .68 & .65 & \textbf{.63}\\
+ & & & ADP & 58.5 & 57 & 56 & 54 & 52 & 50 & 46 & 41 & \textbf{33}\\ \midrule
+\rowcolor{zebra}50 & 68.3 & 81.9 & ESHF & 1.00 & .90 & .80 & .74 & .70 & .64 & .62 & .60 & \textbf{.59}\\
+\rowcolor{zebra} & & & ADP & 61.5 & 60 & 58 & 56 & 54 & 50 & 47 & 42 & \textbf{37}\\ \midrule
+55 & 69.8 & 90.2 & ESHF & 1.00 & .90 & .83 & .74 & .68 & .64 & .61 & .58 & \textbf{.56}\\
+ & & & ADP & 64.2 & 63 & 62 & 60 & 58 & 56 & 54 & 50 & \textbf{44}\\ \midrule
+\rowcolor{zebra}60 & 71.3 & 98.5 & ESHF & 1.00 & .92 & .76 & .68 & .63 & .59 & .56 & .54 & \textbf{.52}\\
+\rowcolor{zebra} & & & ADP & 66.7 & 66 & 64 & 62 & 60 & 58 & 55 & 52 & \textbf{44}\\ \midrule
+65 & 72.8 & 107.0 & ESHF & 1.00 & .86 & .71 & .63 & .58 & .54 & .52 & .51 & \textbf{.49}\\
+ & & & ADP & 69.1 & 68 & 66 & 64 & 62 & 60 & 58 & 56 & \textbf{51}\\ \midrule
+\rowcolor{zebra}70 & 74.2 & 115.5 & ESHF & 1.00 & .80 & .71 & .65 & .60 & .54 & .51 & .48 & \textbf{.46}\\
+\rowcolor{zebra} & & & ADP & 71.2 & 70 & 69 & 68 & 67 & 65 & 63 & 60 & \textbf{56}\\
+\bottomrule\end{tabular}
+\end{minipage}\begin{minipage}[t]{0.5\linewidth}\centering
+\begin{tabular}{@{}>{\raggedleft\arraybackslash}p{0.55cm}>{\raggedleft\arraybackslash}p{0.8cm}>{\raggedleft\arraybackslash}p{0.95cm}|l|*{9}{r}@{}}\toprule
+\rowcolor{hdr}\multicolumn{13}{@{}l@{}}{\textbf{Room dry bulb = 81$^\circ$F}}\\
+\rowcolor{hdr2}\shortstack{RH\\{\tiny(\%)}} & \shortstack{WB\\{\tiny($^\circ$F)}} & \shortstack{W\\{\tiny(gr/lb)}} & & \multicolumn{9}{c}{\tiny ESHF \ / \ ADP ($^\circ$F)}\\ \midrule
+35 & 62.5 & 55.2 & ESHF & 1.00 & .94 & .89 & .84 & .81 & .77 & .75 & .73 & \textbf{.71}\\
+ & & & ADP & 50.8 & 49 & 47 & 45 & 43 & 39 & 36 & 32 & \textbf{21}\\ \midrule
+\rowcolor{zebra}40 & 64.2 & 63.2 & ESHF & 1.00 & .94 & .87 & .82 & .78 & .75 & .72 & .69 & \textbf{.67}\\
+\rowcolor{zebra} & & & ADP & 54.4 & 53 & 51 & 49 & 47 & 45 & 41 & 36 & \textbf{23}\\ \midrule
+45 & 65.9 & 71.2 & ESHF & 1.00 & .96 & .91 & .83 & .78 & .74 & .70 & .67 & \textbf{.64}\\
+ & & & ADP & 57.6 & 57 & 56 & 54 & 52 & 50 & 47 & 43 & \textbf{36}\\ \midrule
+\rowcolor{zebra}50 & 67.5 & 79.0 & ESHF & 1.00 & .90 & .84 & .80 & .74 & .70 & .66 & .62 & \textbf{.60}\\
+\rowcolor{zebra} & & & ADP & 60.5 & 59 & 58 & 57 & 55 & 53 & 50 & 45 & \textbf{38}\\ \midrule
+55 & 69.0 & 87.4 & ESHF & 1.00 & .90 & .77 & .71 & .66 & .62 & .60 & .58 & \textbf{.56}\\
+ & & & ADP & 63.2 & 62 & 60 & 58 & 56 & 53 & 51 & 47 & \textbf{35}\\ \midrule
+\rowcolor{zebra}60 & 70.5 & 95.4 & ESHF & 1.00 & .92 & .77 & .68 & .63 & .59 & .56 & .54 & \textbf{.52}\\
+\rowcolor{zebra} & & & ADP & 65.8 & 65 & 63 & 61 & 59 & 56 & 53 & 50 & \textbf{46}\\ \midrule
+65 & 71.9 & 103.7 & ESHF & 1.00 & .85 & .76 & .71 & .66 & .60 & .56 & .52 & \textbf{.50}\\
+ & & & ADP & 68.2 & 67 & 66 & 65 & 64 & 62 & 60 & 56 & \textbf{52}\\ \midrule
+\rowcolor{zebra}70 & 73.3 & 111.9 & ESHF & 1.00 & .80 & .71 & .61 & .55 & .52 & .48 & .47 & \textbf{.46}\\
+\rowcolor{zebra} & & & ADP & 70.3 & 69 & 68 & 66 & 64 & 62 & 58 & 56 & \textbf{52}\\
+\bottomrule\end{tabular}
+\end{minipage}
+\vspace{8pt}
+\Needspace{20\baselineskip}
+\noindent\begin{minipage}[t]{0.5\linewidth}\centering
+\begin{tabular}{@{}>{\raggedleft\arraybackslash}p{0.55cm}>{\raggedleft\arraybackslash}p{0.8cm}>{\raggedleft\arraybackslash}p{0.95cm}|l|*{9}{r}@{}}\toprule
+\rowcolor{hdr}\multicolumn{13}{@{}l@{}}{\textbf{Room dry bulb = 80$^\circ$F}}\\
+\rowcolor{hdr2}\shortstack{RH\\{\tiny(\%)}} & \shortstack{WB\\{\tiny($^\circ$F)}} & \shortstack{W\\{\tiny(gr/lb)}} & & \multicolumn{9}{c}{\tiny ESHF \ / \ ADP ($^\circ$F)}\\ \midrule
+20 & 56.4 & 30.4 & ESHF & 1.00 & .98 & .95 & .93 & .91 & .89 & .88 & .87 & \textbf{.86}\\
+ & & & ADP & 35.4 & 34 & 32 & 30 & 28 & 26 & 24 & 22 & \textbf{20}\\ \midrule
+\rowcolor{zebra}25 & 58.3 & 38.0 & ESHF & 1.00 & .96 & .93 & .90 & .88 & .86 & .84 & .82 & \textbf{.81}\\
+\rowcolor{zebra} & & & ADP & 40.9 & 39 & 37 & 35 & 33 & 31 & 28 & 24 & \textbf{21}\\ \midrule
+30 & 60.0 & 45.6 & ESHF & 1.00 & .96 & .91 & .88 & .85 & .83 & .80 & .78 & \textbf{.76}\\
+ & & & ADP & 45.7 & 44 & 42 & 40 & 38 & 36 & 32 & 28 & \textbf{21}\\ \midrule
+\rowcolor{zebra}35 & 61.8 & 53.5 & ESHF & 1.00 & .94 & .88 & .85 & .82 & .79 & .77 & .73 & \textbf{.72}\\
+\rowcolor{zebra} & & & ADP & 49.8 & 48 & 46 & 44 & 42 & 40 & 37 & 29 & \textbf{24}\\ \midrule
+40 & 63.5 & 61.2 & ESHF & 1.00 & .94 & .90 & .84 & .80 & .76 & .73 & .70 & \textbf{.68}\\
+ & & & ADP & 53.5 & 52 & 51 & 49 & 47 & 44 & 41 & 36 & \textbf{28}\\ \midrule
+\rowcolor{zebra}45 & 65.1 & 68.9 & ESHF & 1.00 & .96 & .87 & .81 & .76 & .73 & .70 & .67 & \textbf{.64}\\
+\rowcolor{zebra} & & & ADP & 56.8 & 56 & 54 & 52 & 50 & 48 & 45 & 41 & \textbf{31}\\ \midrule
+50 & 66.7 & 76.7 & ESHF & 1.00 & .89 & .80 & .74 & .70 & .66 & .64 & .62 & \textbf{.61}\\
+ & & & ADP & 59.7 & 58 & 56 & 54 & 52 & 49 & 46 & 42 & \textbf{39}\\ \midrule
+\rowcolor{zebra}55 & 68.2 & 84.6 & ESHF & 1.00 & .89 & .82 & .74 & .69 & .65 & .61 & .59 & \textbf{.57}\\
+\rowcolor{zebra} & & & ADP & 62.3 & 61 & 60 & 58 & 56 & 54 & 50 & 47 & \textbf{40}\\ \midrule
+60 & 69.6 & 92.3 & ESHF & 1.00 & .91 & .83 & .72 & .66 & .62 & .59 & .57 & \textbf{.54}\\
+ & & & ADP & 64.8 & 64 & 63 & 61 & 59 & 57 & 55 & 53 & \textbf{47}\\ \midrule
+\rowcolor{zebra}65 & 71.1 & 100.4 & ESHF & 1.00 & .85 & .76 & .71 & .63 & .58 & .55 & .52 & \textbf{.50}\\
+\rowcolor{zebra} & & & ADP & 67.2 & 66 & 65 & 64 & 62 & 60 & 58 & 54 & \textbf{47}\\ \midrule
+70 & 72.4 & 108.3 & ESHF & 1.00 & .78 & .71 & .65 & .61 & .55 & .52 & .49 & \textbf{.47}\\
+ & & & ADP & 69.4 & 68 & 67 & 66 & 65 & 63 & 61 & 58 & \textbf{53}\\
+\bottomrule\end{tabular}
+\end{minipage}\begin{minipage}[t]{0.5\linewidth}\centering
+\begin{tabular}{@{}>{\raggedleft\arraybackslash}p{0.55cm}>{\raggedleft\arraybackslash}p{0.8cm}>{\raggedleft\arraybackslash}p{0.95cm}|l|*{9}{r}@{}}\toprule
+\rowcolor{hdr}\multicolumn{13}{@{}l@{}}{\textbf{Room dry bulb = 79$^\circ$F}}\\
+\rowcolor{hdr2}\shortstack{RH\\{\tiny(\%)}} & \shortstack{WB\\{\tiny($^\circ$F)}} & \shortstack{W\\{\tiny(gr/lb)}} & & \multicolumn{9}{c}{\tiny ESHF \ / \ ADP ($^\circ$F)}\\ \midrule
+35 & 61.0 & 51.5 & ESHF & 1.00 & .96 & .91 & .89 & .85 & .82 & .78 & .75 & \textbf{.73}\\
+ & & & ADP & 48.9 & 48 & 46 & 45 & 43 & 41 & 37 & 32 & \textbf{26}\\ \midrule
+\rowcolor{zebra}40 & 62.7 & 59.2 & ESHF & 1.00 & .97 & .90 & .84 & .80 & .76 & .74 & .71 & \textbf{.69}\\
+\rowcolor{zebra} & & & ADP & 52.7 & 52 & 50 & 48 & 46 & 43 & 41 & 36 & \textbf{29}\\ \midrule
+45 & 64.3 & 66.7 & ESHF & 1.00 & .91 & .83 & .78 & .75 & .72 & .70 & .67 & \textbf{.65}\\
+ & & & ADP & 55.9 & 54 & 52 & 50 & 48 & 46 & 44 & 39 & \textbf{32}\\ \midrule
+\rowcolor{zebra}50 & 65.9 & 74.2 & ESHF & 1.00 & .89 & .80 & .75 & .71 & .68 & .66 & .63 & \textbf{.61}\\
+\rowcolor{zebra} & & & ADP & 58.9 & 57 & 55 & 53 & 51 & 49 & 47 & 42 & \textbf{33}\\ \midrule
+55 & 67.4 & 81.9 & ESHF & 1.00 & .96 & .82 & .74 & .69 & .66 & .63 & .60 & \textbf{.58}\\
+ & & & ADP & 61.4 & 61 & 59 & 57 & 55 & 53 & 51 & 47 & \textbf{41}\\ \midrule
+\rowcolor{zebra}60 & 68.8 & 89.3 & ESHF & 1.00 & .90 & .76 & .69 & .64 & .61 & .57 & .55 & \textbf{.54}\\
+\rowcolor{zebra} & & & ADP & 63.9 & 63 & 61 & 59 & 57 & 55 & 51 & 47 & \textbf{41}\\ \midrule
+65 & 70.2 & 97.0 & ESHF & 1.00 & .84 & .71 & .64 & .59 & .56 & .54 & .52 & \textbf{.51}\\
+ & & & ADP & 66.3 & 65 & 63 & 61 & 59 & 57 & 55 & 51 & \textbf{48}\\ \midrule
+\rowcolor{zebra}70 & 71.6 & 104.8 & ESHF & 1.00 & .81 & .71 & .65 & .58 & .54 & .52 & .50 & \textbf{.48}\\
+\rowcolor{zebra} & & & ADP & 68.5 & 67 & 66 & 65 & 63 & 61 & 59 & 57 & \textbf{53}\\
+\bottomrule\end{tabular}
+\end{minipage}
+\vspace{8pt}
+\Needspace{20\baselineskip}
+\noindent\begin{minipage}[t]{0.5\linewidth}\centering
+\begin{tabular}{@{}>{\raggedleft\arraybackslash}p{0.55cm}>{\raggedleft\arraybackslash}p{0.8cm}>{\raggedleft\arraybackslash}p{0.95cm}|l|*{9}{r}@{}}\toprule
+\rowcolor{hdr}\multicolumn{13}{@{}l@{}}{\textbf{Room dry bulb = 78$^\circ$F}}\\
+\rowcolor{hdr2}\shortstack{RH\\{\tiny(\%)}} & \shortstack{WB\\{\tiny($^\circ$F)}} & \shortstack{W\\{\tiny(gr/lb)}} & & \multicolumn{9}{c}{\tiny ESHF \ / \ ADP ($^\circ$F)}\\ \midrule
+35 & 60.3 & 50.0 & ESHF & 1.00 & .96 & .91 & .87 & .83 & .79 & .77 & .75 & \textbf{.73}\\
+ & & & ADP & 48.2 & 47 & 45 & 43 & 41 & 37 & 35 & 31 & \textbf{22}\\ \midrule
+\rowcolor{zebra}40 & 61.9 & 57.3 & ESHF & 1.00 & .93 & .87 & .82 & .79 & .77 & .73 & .71 & \textbf{.69}\\
+\rowcolor{zebra} & & & ADP & 51.7 & 50 & 48 & 46 & 44 & 42 & 38 & 34 & \textbf{25}\\ \midrule
+45 & 63.5 & 64.6 & ESHF & 1.00 & .95 & .86 & .81 & .76 & .74 & .70 & .68 & \textbf{.66}\\
+ & & & ADP & 55.0 & 54 & 52 & 50 & 48 & 46 & 42 & 39 & \textbf{34}\\ \midrule
+\rowcolor{zebra}50 & 65.0 & 71.9 & ESHF & 1.00 & .94 & .83 & .76 & .73 & .70 & .67 & .64 & \textbf{.62}\\
+\rowcolor{zebra} & & & ADP & 57.9 & 57 & 55 & 53 & 51 & 49 & 47 & 42 & \textbf{36}\\ \midrule
+55 & 66.6 & 79.2 & ESHF & 1.00 & .96 & .83 & .75 & .70 & .65 & .62 & .60 & \textbf{.59}\\
+ & & & ADP & 60.5 & 60 & 58 & 56 & 54 & 51 & 48 & 44 & \textbf{41}\\ \midrule
+\rowcolor{zebra}60 & 67.9 & 86.4 & ESHF & 1.00 & .90 & .82 & .76 & .69 & .64 & .60 & .57 & \textbf{.55}\\
+\rowcolor{zebra} & & & ADP & 63.0 & 62 & 61 & 60 & 58 & 56 & 53 & 49 & \textbf{42}\\ \midrule
+65 & 69.3 & 93.8 & ESHF & 1.00 & .85 & .77 & .71 & .67 & .62 & .58 & .54 & \textbf{.52}\\
+ & & & ADP & 65.2 & 64 & 63 & 62 & 61 & 59 & 57 & 53 & \textbf{48}\\ \midrule
+\rowcolor{zebra}70 & 70.6 & 101.2 & ESHF & 1.00 & .71 & .66 & .62 & .59 & .55 & .52 & .50 & \textbf{.48}\\
+\rowcolor{zebra} & & & ADP & 67.5 & 65 & 64 & 63 & 62 & 60 & 58 & 55 & \textbf{48}\\
+\bottomrule\end{tabular}
+\end{minipage}\begin{minipage}[t]{0.5\linewidth}\centering
+\begin{tabular}{@{}>{\raggedleft\arraybackslash}p{0.55cm}>{\raggedleft\arraybackslash}p{0.8cm}>{\raggedleft\arraybackslash}p{0.95cm}|l|*{9}{r}@{}}\toprule
+\rowcolor{hdr}\multicolumn{13}{@{}l@{}}{\textbf{Room dry bulb = 77$^\circ$F}}\\
+\rowcolor{hdr2}\shortstack{RH\\{\tiny(\%)}} & \shortstack{WB\\{\tiny($^\circ$F)}} & \shortstack{W\\{\tiny(gr/lb)}} & & \multicolumn{9}{c}{\tiny ESHF \ / \ ADP ($^\circ$F)}\\ \midrule
+35 & 59.6 & 48.3 & ESHF & 1.00 & .96 & .91 & .87 & .83 & .79 & .77 & .75 & \textbf{.74}\\
+ & & & ADP & 47.3 & 46 & 44 & 42 & 40 & 36 & 33 & 28 & \textbf{24}\\ \midrule
+\rowcolor{zebra}40 & 61.2 & 55.5 & ESHF & 1.00 & .96 & .89 & .84 & .81 & .78 & .76 & .73 & \textbf{.70}\\
+\rowcolor{zebra} & & & ADP & 50.9 & 50 & 48 & 46 & 44 & 42 & 40 & 36 & \textbf{27}\\ \midrule
+45 & 62.7 & 62.4 & ESHF & 1.00 & .94 & .86 & .81 & .77 & .74 & .72 & .69 & \textbf{.66}\\
+ & & & ADP & 54.1 & 53 & 51 & 49 & 47 & 45 & 43 & 39 & \textbf{29}\\ \midrule
+\rowcolor{zebra}50 & 64.2 & 69.7 & ESHF & 1.00 & .94 & .84 & .77 & .73 & .70 & .68 & .65 & \textbf{.63}\\
+\rowcolor{zebra} & & & ADP & 57.0 & 56 & 54 & 52 & 50 & 48 & 46 & 42 & \textbf{37}\\ \midrule
+55 & 65.6 & 76.6 & ESHF & 1.00 & .95 & .83 & .75 & .70 & .67 & .63 & .61 & \textbf{.59}\\
+ & & & ADP & 59.6 & 59 & 57 & 55 & 53 & 51 & 48 & 44 & \textbf{37}\\ \midrule
+\rowcolor{zebra}60 & 67.1 & 83.6 & ESHF & 1.00 & .89 & .82 & .77 & .73 & .67 & .62 & .58 & \textbf{.56}\\
+\rowcolor{zebra} & & & ADP & 62.0 & 61 & 60 & 59 & 58 & 56 & 53 & 48 & \textbf{43}\\ \midrule
+65 & 68.5 & 90.8 & ESHF & 1.00 & .84 & .72 & .64 & .60 & .57 & .55 & .54 & \textbf{.53}\\
+ & & & ADP & 64.4 & 63 & 61 & 59 & 57 & 55 & 53 & 51 & \textbf{48}\\ \midrule
+\rowcolor{zebra}70 & 69.8 & 97.9 & ESHF & 1.00 & .79 & .66 & .60 & .55 & .53 & .51 & .50 & \textbf{.49}\\
+\rowcolor{zebra} & & & ADP & 66.5 & 65 & 63 & 61 & 59 & 57 & 55 & 53 & \textbf{49}\\
+\bottomrule\end{tabular}
+\end{minipage}
+\vspace{8pt}
+\Needspace{20\baselineskip}
+\noindent\begin{minipage}[t]{0.5\linewidth}\centering
+\begin{tabular}{@{}>{\raggedleft\arraybackslash}p{0.55cm}>{\raggedleft\arraybackslash}p{0.8cm}>{\raggedleft\arraybackslash}p{0.95cm}|l|*{9}{r}@{}}\toprule
+\rowcolor{hdr}\multicolumn{13}{@{}l@{}}{\textbf{Room dry bulb = 76$^\circ$F}}\\
+\rowcolor{hdr2}\shortstack{RH\\{\tiny(\%)}} & \shortstack{WB\\{\tiny($^\circ$F)}} & \shortstack{W\\{\tiny(gr/lb)}} & & \multicolumn{9}{c}{\tiny ESHF \ / \ ADP ($^\circ$F)}\\ \midrule
+35 & 58.9 & 46.7 & ESHF & 1.00 & .96 & .91 & .87 & .84 & .81 & .79 & .77 & \textbf{.74}\\
+ & & & ADP & 46.3 & 45 & 43 & 41 & 39 & 37 & 34 & 31 & \textbf{21}\\ \midrule
+\rowcolor{zebra}40 & 60.4 & 53.7 & ESHF & 1.00 & .96 & .89 & .84 & .81 & .78 & .76 & .72 & \textbf{.70}\\
+\rowcolor{zebra} & & & ADP & 49.9 & 49 & 47 & 45 & 43 & 41 & 39 & 32 & \textbf{22}\\ \midrule
+45 & 61.9 & 60.4 & ESHF & 1.00 & .94 & .86 & .81 & .77 & .74 & .71 & .69 & \textbf{.67}\\
+ & & & ADP & 53.2 & 52 & 50 & 48 & 46 & 44 & 40 & 37 & \textbf{31}\\ \midrule
+\rowcolor{zebra}50 & 63.4 & 67.4 & ESHF & 1.00 & .93 & .83 & .77 & .73 & .69 & .67 & .65 & \textbf{.63}\\
+\rowcolor{zebra} & & & ADP & 56.2 & 55 & 53 & 51 & 49 & 46 & 43 & 40 & \textbf{32}\\ \midrule
+55 & 64.9 & 74.0 & ESHF & 1.00 & .94 & .82 & .75 & .70 & .67 & .65 & .62 & \textbf{.60}\\
+ & & & ADP & 58.7 & 58 & 56 & 54 & 52 & 50 & 48 & 44 & \textbf{38}\\ \midrule
+\rowcolor{zebra}60 & 66.2 & 80.9 & ESHF & 1.00 & .90 & .77 & .70 & .66 & .62 & .60 & .58 & \textbf{.57}\\
+\rowcolor{zebra} & & & ADP & 61.1 & 60 & 58 & 56 & 54 & 52 & 49 & 46 & \textbf{43}\\ \midrule
+65 & 67.6 & 87.6 & ESHF & 1.00 & .84 & .72 & .65 & .61 & .58 & .56 & .54 & \textbf{.53}\\
+ & & & ADP & 63.4 & 62 & 60 & 58 & 56 & 54 & 52 & 48 & \textbf{43}\\ \midrule
+\rowcolor{zebra}70 & 68.9 & 94.6 & ESHF & 1.00 & .80 & .67 & .60 & .56 & .54 & .52 & .51 & \textbf{.50}\\
+\rowcolor{zebra} & & & ADP & 65.5 & 64 & 62 & 60 & 58 & 56 & 54 & 52 & \textbf{49}\\
+\bottomrule\end{tabular}
+\end{minipage}\begin{minipage}[t]{0.5\linewidth}\centering
+\begin{tabular}{@{}>{\raggedleft\arraybackslash}p{0.55cm}>{\raggedleft\arraybackslash}p{0.8cm}>{\raggedleft\arraybackslash}p{0.95cm}|l|*{9}{r}@{}}\toprule
+\rowcolor{hdr}\multicolumn{13}{@{}l@{}}{\textbf{Room dry bulb = 75$^\circ$F}}\\
+\rowcolor{hdr2}\shortstack{RH\\{\tiny(\%)}} & \shortstack{WB\\{\tiny($^\circ$F)}} & \shortstack{W\\{\tiny(gr/lb)}} & & \multicolumn{9}{c}{\tiny ESHF \ / \ ADP ($^\circ$F)}\\ \midrule
+20 & 53.2 & 25.7 & ESHF & 1.00 & .98 & .96 & .94 & .92 & .90 & \textbf{.89} &  & \\
+ & & & ADP & 31.5 & 30 & 28 & 26 & 24 & 22 & \textbf{20} &  & \\ \midrule
+\rowcolor{zebra}25 & 54.8 & 32.1 & ESHF & 1.00 & .95 & .92 & .90 & .88 & .86 & \textbf{.84} &  & \\
+\rowcolor{zebra} & & & ADP & 36.9 & 34 & 32 & 30 & 28 & 25 & \textbf{21} &  & \\ \midrule
+30 & 56.5 & 38.5 & ESHF & 1.00 & .97 & .93 & .90 & .87 & .85 & .82 & .80 & \textbf{.79}\\
+ & & & ADP & 41.4 & 40 & 38 & 36 & 34 & 32 & 28 & 24 & \textbf{20}\\ \midrule
+\rowcolor{zebra}35 & 58.1 & 45.2 & ESHF & 1.00 & .96 & .91 & .87 & .84 & .80 & .78 & .76 & \textbf{.75}\\
+\rowcolor{zebra} & & & ADP & 45.5 & 44 & 42 & 40 & 38 & 34 & 31 & 27 & \textbf{22}\\ \midrule
+40 & 59.6 & 51.8 & ESHF & 1.00 & .96 & .89 & .84 & .81 & .79 & .76 & .73 & \textbf{.71}\\
+ & & & ADP & 49.1 & 48 & 46 & 44 & 42 & 40 & 37 & 32 & \textbf{24}\\ \midrule
+\rowcolor{zebra}45 & 61.1 & 58.2 & ESHF & 1.00 & .94 & .87 & .81 & .77 & .75 & .72 & .69 & \textbf{.67}\\
+\rowcolor{zebra} & & & ADP & 52.2 & 51 & 49 & 47 & 45 & 43 & 40 & 35 & \textbf{21}\\ \midrule
+50 & 62.6 & 65.0 & ESHF & 1.00 & .92 & .84 & .78 & .74 & .71 & .69 & .66 & \textbf{.64}\\
+ & & & ADP & 55.2 & 54 & 52 & 50 & 48 & 46 & 44 & 40 & \textbf{34}\\ \midrule
+\rowcolor{zebra}55 & 64.0 & 71.5 & ESHF & 1.00 & .94 & .87 & .78 & .73 & .69 & .65 & .63 & \textbf{.61}\\
+\rowcolor{zebra} & & & ADP & 57.8 & 57 & 56 & 54 & 52 & 50 & 47 & 44 & \textbf{39}\\ \midrule
+60 & 65.3 & 77.9 & ESHF & 1.00 & .90 & .77 & .71 & .66 & .63 & .61 & .59 & \textbf{.58}\\
+ & & & ADP & 60.1 & 59 & 57 & 55 & 53 & 51 & 49 & 46 & \textbf{43}\\ \midrule
+\rowcolor{zebra}65 & 66.7 & 84.8 & ESHF & 1.00 & .84 & .72 & .65 & .61 & .59 & .57 & .55 & \textbf{.54}\\
+\rowcolor{zebra} & & & ADP & 62.4 & 61 & 59 & 57 & 55 & 53 & 51 & 48 & \textbf{44}\\ \midrule
+70 & 68.0 & 91.2 & ESHF & 1.00 & .80 & .73 & .68 & .61 & .57 & .54 & .52 & \textbf{.51}\\
+ & & & ADP & 64.5 & 63 & 62 & 61 & 59 & 57 & 55 & 52 & \textbf{49}\\
+\bottomrule\end{tabular}
+\end{minipage}
+\vspace{8pt}
+\Needspace{20\baselineskip}
+\noindent\begin{minipage}[t]{0.5\linewidth}\centering
+\begin{tabular}{@{}>{\raggedleft\arraybackslash}p{0.55cm}>{\raggedleft\arraybackslash}p{0.8cm}>{\raggedleft\arraybackslash}p{0.95cm}|l|*{9}{r}@{}}\toprule
+\rowcolor{hdr}\multicolumn{13}{@{}l@{}}{\textbf{Room dry bulb = 72$^\circ$F}}\\
+\rowcolor{hdr2}\shortstack{RH\\{\tiny(\%)}} & \shortstack{WB\\{\tiny($^\circ$F)}} & \shortstack{W\\{\tiny(gr/lb)}} & & \multicolumn{9}{c}{\tiny ESHF \ / \ ADP ($^\circ$F)}\\ \midrule
+35 & 55.9 & 40.8 & ESHF & 1.00 & .98 & .93 & .89 & .86 & .83 & .81 & .79 & \textbf{.77}\\
+ & & & ADP & 42.8 & 42 & 40 & 38 & 36 & 34 & 31 & 28 & \textbf{22}\\ \midrule
+\rowcolor{zebra}40 & 57.3 & 46.7 & ESHF & 1.00 & .95 & .92 & .87 & .84 & .81 & .77 & .75 & \textbf{.73}\\
+\rowcolor{zebra} & & & ADP & 46.3 & 45 & 44 & 42 & 40 & 38 & 34 & 30 & \textbf{23}\\ \midrule
+45 & 58.7 & 52.7 & ESHF & 1.00 & .94 & .87 & .82 & .79 & .76 & .74 & .71 & \textbf{.69}\\
+ & & & ADP & 49.5 & 48 & 46 & 44 & 42 & 40 & 38 & 32 & \textbf{22}\\ \midrule
+\rowcolor{zebra}50 & 60.1 & 58.8 & ESHF & 1.00 & .92 & .88 & .81 & .77 & .73 & .70 & .68 & \textbf{.66}\\
+\rowcolor{zebra} & & & ADP & 52.4 & 51 & 50 & 48 & 46 & 43 & 40 & 37 & \textbf{30}\\ \midrule
+55 & 61.4 & 64.4 & ESHF & 1.00 & .93 & .83 & .77 & .72 & .68 & .66 & .64 & \textbf{.63}\\
+ & & & ADP & 54.9 & 54 & 52 & 50 & 48 & 45 & 42 & 39 & \textbf{36}\\ \midrule
+\rowcolor{zebra}60 & 62.7 & 70.2 & ESHF & 1.00 & .89 & .79 & .72 & .68 & .65 & .63 & .61 & \textbf{.60}\\
+\rowcolor{zebra} & & & ADP & 57.3 & 56 & 54 & 52 & 50 & 48 & 46 & 42 & \textbf{39}\\ \midrule
+65 & 64.0 & 76.3 & ESHF & 1.00 & .84 & .73 & .67 & .63 & .61 & .59 & \textbf{.58} & \\
+ & & & ADP & 59.5 & 58 & 56 & 54 & 52 & 50 & 48 & \textbf{47} & \\ \midrule
+\rowcolor{zebra}70 & 65.2 & 82.3 & ESHF & 1.00 & .80 & .69 & .62 & .59 & .56 & .54 & \textbf{.53} & \\
+\rowcolor{zebra} & & & ADP & 61.6 & 60 & 58 & 56 & 54 & 51 & 48 & \textbf{44} & \\
+\bottomrule\end{tabular}
+\end{minipage}\begin{minipage}[t]{0.5\linewidth}\centering
+\begin{tabular}{@{}>{\raggedleft\arraybackslash}p{0.55cm}>{\raggedleft\arraybackslash}p{0.8cm}>{\raggedleft\arraybackslash}p{0.95cm}|l|*{9}{r}@{}}\toprule
+\rowcolor{hdr}\multicolumn{13}{@{}l@{}}{\textbf{Room dry bulb = 70$^\circ$F}}\\
+\rowcolor{hdr2}\shortstack{RH\\{\tiny(\%)}} & \shortstack{WB\\{\tiny($^\circ$F)}} & \shortstack{W\\{\tiny(gr/lb)}} & & \multicolumn{9}{c}{\tiny ESHF \ / \ ADP ($^\circ$F)}\\ \midrule
+20 & 49.9 & 21.6 & ESHF & 1.00 & .98 & .96 & .94 & \textbf{.93} &  &  &  & \\
+ & & & ADP & 27.6 & 26 & 24 & 22 & \textbf{21} &  &  &  & \\ \midrule
+\rowcolor{zebra}25 & 51.5 & 27.0 & ESHF & 1.00 & .97 & .94 & .92 & .90 & \textbf{.88} &  &  & \\
+\rowcolor{zebra} & & & ADP & 33.7 & 31 & 29 & 27 & 25 & \textbf{22} &  &  & \\ \midrule
+30 & 53.0 & 32.8 & ESHF & 1.00 & .98 & .94 & .91 & .88 & .86 & .84 & \textbf{.82} & \\
+ & & & ADP & 37.1 & 36 & 34 & 32 & 30 & 27 & 25 & \textbf{20} & \\ \midrule
+\rowcolor{zebra}35 & 54.4 & 38.0 & ESHF & 1.00 & .97 & .93 & .89 & .86 & .84 & .82 & .80 & \textbf{.78}\\
+\rowcolor{zebra} & & & ADP & 41.1 & 40 & 38 & 36 & 34 & 32 & 30 & 27 & \textbf{22}\\ \midrule
+40 & 55.8 & 43.5 & ESHF & 1.00 & .95 & .90 & .86 & .83 & .80 & .78 & .76 & \textbf{.74}\\
+ & & & ADP & 44.5 & 43 & 41 & 39 & 37 & 35 & 32 & 29 & \textbf{22}\\ \midrule
+\rowcolor{zebra}45 & 57.1 & 49.1 & ESHF & 1.00 & .93 & .87 & .82 & .79 & .77 & .75 & .73 & \textbf{.71}\\
+\rowcolor{zebra} & & & ADP & 47.7 & 46 & 44 & 42 & 40 & 38 & 36 & 33 & \textbf{27}\\ \midrule
+50 & 58.5 & 54.8 & ESHF & 1.00 & .92 & .84 & .80 & .76 & .74 & .71 & .69 & \textbf{.67}\\
+ & & & ADP & 50.5 & 49 & 47 & 45 & 43 & 41 & 38 & 35 & \textbf{25}\\ \midrule
+\rowcolor{zebra}55 & 59.7 & 60.1 & ESHF & 1.00 & .93 & .83 & .77 & .73 & .71 & .68 & .66 & \textbf{.64}\\
+\rowcolor{zebra} & & & ADP & 53.1 & 52 & 50 & 48 & 46 & 44 & 42 & 38 & \textbf{32}\\ \midrule
+60 & 60.9 & 65.5 & ESHF & 1.00 & .89 & .79 & .73 & .69 & .66 & .64 & .62 & \textbf{.61}\\
+ & & & ADP & 55.4 & 54 & 52 & 50 & 48 & 46 & 43 & 40 & \textbf{36}\\ \midrule
+\rowcolor{zebra}65 & 62.2 & 71.1 & ESHF & 1.00 & .93 & .78 & .71 & .66 & .63 & .61 & .59 & \textbf{.58}\\
+\rowcolor{zebra} & & & ADP & 57.7 & 57 & 55 & 53 & 51 & 49 & 47 & 44 & \textbf{40}\\ \midrule
+70 & 63.4 & 76.9 & ESHF & 1.00 & .90 & .74 & .66 & .61 & .59 & .57 & .56 & \textbf{.55}\\
+ & & & ADP & 59.8 & 59 & 57 & 55 & 53 & 51 & 49 & 47 & \textbf{45}\\ \midrule
+\rowcolor{zebra}75 & 64.5 & 82.5 & ESHF & 1.00 & .88 & .70 & .62 & .57 & .55 & .53 & .52 & \textbf{.51}\\
+\rowcolor{zebra} & & & ADP & 61.7 & 61 & 59 & 57 & 55 & 53 & 51 & 49 & \textbf{44}\\ \midrule
+80 & 65.7 & 88.0 & ESHF & 1.00 & .87 & .73 & .65 & .60 & .54 & .51 & .49 & \textbf{.48}\\
+ & & & ADP & 63.5 & 63 & 62 & 61 & 60 & 58 & 56 & 53 & \textbf{49}\\ \midrule
+\rowcolor{zebra}85 & 66.8 & 93.7 & ESHF & 1.00 & .71 & .56 & .52 & .50 & .48 & .47 & .46 & \textbf{.45}\\
+\rowcolor{zebra} & & & ADP & 65.3 & 64 & 62 & 61 & 60 & 59 & 58 & 57 & \textbf{54}\\ \midrule
+90 & 67.9 & 99.3 & ESHF & 1.00 & .66 & .56 & .50 & .47 & .45 & .43 & .42 & \textbf{.41}\\
+ & & & ADP & 66.9 & 66 & 65 & 64 & 63 & 62 & 61 & 60 & \textbf{56}\\ \midrule
+\rowcolor{zebra}95 & 69.0 & 105.0 & ESHF & 1.00 & .60 & .47 & .42 & .39 & .38 & \textbf{.37} &  & \\
+\rowcolor{zebra} & & & ADP & 68.5 & 68 & 67 & 66 & 65 & 64 & \textbf{62} &  & \\
+\bottomrule\end{tabular}
+\end{minipage}
+\vspace{8pt}
+\Needspace{20\baselineskip}
+\noindent\begin{minipage}[t]{0.5\linewidth}\centering
+\begin{tabular}{@{}>{\raggedleft\arraybackslash}p{0.55cm}>{\raggedleft\arraybackslash}p{0.8cm}>{\raggedleft\arraybackslash}p{0.95cm}|l|*{9}{r}@{}}\toprule
+\rowcolor{hdr}\multicolumn{13}{@{}l@{}}{\textbf{Room dry bulb = 65$^\circ$F}}\\
+\rowcolor{hdr2}\shortstack{RH\\{\tiny(\%)}} & \shortstack{WB\\{\tiny($^\circ$F)}} & \shortstack{W\\{\tiny(gr/lb)}} & & \multicolumn{9}{c}{\tiny ESHF \ / \ ADP ($^\circ$F)}\\ \midrule
+60 & 56.6 & 55.0 & ESHF & 1.00 & .95 & .84 & .77 & .73 & .70 & .68 & .66 & \textbf{.65}\\
+ & & & ADP & 50.6 & 50 & 48 & 46 & 44 & 42 & 39 & 36 & \textbf{34}\\ \midrule
+\rowcolor{zebra}65 & 57.7 & 59.7 & ESHF & 1.00 & .92 & .85 & .80 & .73 & .69 & .66 & .64 & \textbf{.62}\\
+\rowcolor{zebra} & & & ADP & 52.9 & 52 & 51 & 50 & 48 & 46 & 44 & 41 & \textbf{37}\\ \midrule
+70 & 58.9 & 64.5 & ESHF & 1.00 & .89 & .80 & .76 & .69 & .65 & .62 & .60 & \textbf{.58}\\
+ & & & ADP & 55.0 & 54 & 53 & 52 & 50 & 48 & 46 & 43 & \textbf{37}\\ \midrule
+\rowcolor{zebra}75 & 59.9 & 69.2 & ESHF & 1.00 & .88 & .78 & .72 & .65 & .61 & .58 & .56 & \textbf{.55}\\
+\rowcolor{zebra} & & & ADP & 56.9 & 56 & 55 & 54 & 52 & 50 & 48 & 45 & \textbf{41}\\ \midrule
+80 & 61.0 & 73.8 & ESHF & 1.00 & .75 & .68 & .63 & .60 & .58 & .55 & .53 & \textbf{.52}\\
+ & & & ADP & 58.7 & 57 & 56 & 55 & 54 & 53 & 51 & 48 & \textbf{46}\\ \midrule
+\rowcolor{zebra}85 & 62.0 & 78.6 & ESHF & 1.00 & .71 & .63 & .58 & .55 & .52 & .50 & \textbf{.49} & \\
+\rowcolor{zebra} & & & ADP & 60.3 & 59 & 58 & 57 & 56 & 54 & 52 & \textbf{50} & \\ \midrule
+90 & 63.0 & 83.2 & ESHF & 1.00 & .70 & .58 & .53 & .50 & .48 & .46 & \textbf{.45} & \\
+ & & & ADP & 61.9 & 61 & 60 & 59 & 58 & 57 & 55 & \textbf{53} & \\ \midrule
+\rowcolor{zebra}95 & 64.0 & 88.0 & ESHF & 1.00 & .69 & .51 & .46 & .43 & .42 & \textbf{.41} &  & \\
+\rowcolor{zebra} & & & ADP & 63.5 & 63 & 62 & 61 & 60 & 59 & \textbf{58} &  & \\
+\bottomrule\end{tabular}
+\end{minipage}\begin{minipage}[t]{0.5\linewidth}\centering
+\begin{tabular}{@{}>{\raggedleft\arraybackslash}p{0.55cm}>{\raggedleft\arraybackslash}p{0.8cm}>{\raggedleft\arraybackslash}p{0.95cm}|l|*{9}{r}@{}}\toprule
+\rowcolor{hdr}\multicolumn{13}{@{}l@{}}{\textbf{Room dry bulb = 60$^\circ$F}}\\
+\rowcolor{hdr2}\shortstack{RH\\{\tiny(\%)}} & \shortstack{WB\\{\tiny($^\circ$F)}} & \shortstack{W\\{\tiny(gr/lb)}} & & \multicolumn{9}{c}{\tiny ESHF \ / \ ADP ($^\circ$F)}\\ \midrule
+60 & 52.3 & 46.2 & ESHF & 1.00 & .94 & .89 & .81 & .77 & .74 & .72 & .70 & \textbf{.68}\\
+ & & & ADP & 46.0 & 45 & 44 & 42 & 40 & 38 & 36 & 34 & \textbf{28}\\ \midrule
+\rowcolor{zebra}65 & 53.3 & 50.0 & ESHF & 1.00 & .91 & .86 & .78 & .74 & .70 & .69 & .67 & \textbf{.65}\\
+\rowcolor{zebra} & & & ADP & 48.1 & 47 & 46 & 44 & 42 & 40 & 39 & 36 & \textbf{31}\\ \midrule
+70 & 54.3 & 53.9 & ESHF & 1.00 & .89 & .83 & .74 & .70 & .67 & .65 & .63 & \textbf{.62}\\
+ & & & ADP & 50.1 & 49 & 48 & 46 & 44 & 42 & 40 & 37 & \textbf{34}\\ \midrule
+\rowcolor{zebra}75 & 55.3 & 57.8 & ESHF & 1.00 & .79 & .74 & .71 & .68 & .64 & .62 & .60 & \textbf{.59}\\
+\rowcolor{zebra} & & & ADP & 52.0 & 50 & 49 & 48 & 47 & 45 & 43 & 40 & \textbf{37}\\ \midrule
+80 & 56.3 & 61.7 & ESHF & 1.00 & .85 & .76 & .70 & .66 & .61 & .59 & .57 & \textbf{.56}\\
+ & & & ADP & 53.8 & 53 & 52 & 51 & 50 & 48 & 46 & 44 & \textbf{41}\\ \midrule
+\rowcolor{zebra}85 & 57.2 & 65.5 & ESHF & 1.00 & .75 & .67 & .63 & .57 & .56 & .54 & \textbf{.53} & \\
+\rowcolor{zebra} & & & ADP & 55.4 & 54 & 53 & 52 & 50 & 49 & 47 & \textbf{45} & \\ \midrule
+90 & 58.2 & 69.4 & ESHF & 1.00 & .72 & .62 & .57 & .54 & .52 & .50 & \textbf{.49} & \\
+ & & & ADP & 57.0 & 56 & 55 & 54 & 53 & 52 & 50 & \textbf{47} & \\ \midrule
+\rowcolor{zebra}95 & 59.1 & 73.5 & ESHF & 1.00 & .69 & .55 & .49 & .47 & .46 & \textbf{.45} &  & \\
+\rowcolor{zebra} & & & ADP & 58.5 & 58 & 57 & 56 & 55 & 54 & \textbf{52} &  & \\
+\bottomrule\end{tabular}
+\end{minipage}
+\vspace{8pt}
+\Needspace{20\baselineskip}
+\noindent\begin{minipage}[t]{0.5\linewidth}\centering
+\begin{tabular}{@{}>{\raggedleft\arraybackslash}p{0.55cm}>{\raggedleft\arraybackslash}p{0.8cm}>{\raggedleft\arraybackslash}p{0.95cm}|l|*{9}{r}@{}}\toprule
+\rowcolor{hdr}\multicolumn{13}{@{}l@{}}{\textbf{Room dry bulb = 55$^\circ$F}}\\
+\rowcolor{hdr2}\shortstack{RH\\{\tiny(\%)}} & \shortstack{WB\\{\tiny($^\circ$F)}} & \shortstack{W\\{\tiny(gr/lb)}} & & \multicolumn{9}{c}{\tiny ESHF \ / \ ADP ($^\circ$F)}\\ \midrule
+60 & 47.9 & 38.4 & ESHF & 1.00 & .93 & .89 & .85 & .80 & .77 & .75 & .73 & \textbf{.71}\\
+ & & & ADP & 41.3 & 40 & 39 & 38 & 36 & 34 & 32 & 29 & \textbf{23}\\ \midrule
+\rowcolor{zebra}65 & 48.8 & 41.4 & ESHF & 1.00 & .91 & .86 & .83 & .78 & .74 & .72 & .70 & \textbf{.68}\\
+\rowcolor{zebra} & & & ADP & 43.3 & 42 & 41 & 40 & 38 & 36 & 34 & 31 & \textbf{24}\\ \midrule
+70 & 49.7 & 44.6 & ESHF & 1.00 & .90 & .84 & .80 & .74 & .71 & .69 & .67 & \textbf{.66}\\
+ & & & ADP & 45.2 & 44 & 43 & 42 & 40 & 38 & 36 & 33 & \textbf{31}\\ \midrule
+\rowcolor{zebra}75 & 50.6 & 48.0 & ESHF & 1.00 & .89 & .82 & .74 & .69 & .66 & .65 & .64 & \textbf{.63}\\
+\rowcolor{zebra} & & & ADP & 47.1 & 46 & 45 & 43 & 41 & 39 & 37 & 36 & \textbf{34}\\ \midrule
+80 & 51.5 & 51.2 & ESHF & 1.00 & .88 & .79 & .74 & .67 & .64 & .62 & .61 & \textbf{.60}\\
+ & & & ADP & 48.8 & 48 & 47 & 46 & 44 & 42 & 40 & 39 & \textbf{37}\\ \midrule
+\rowcolor{zebra}85 & 52.4 & 54.5 & ESHF & 1.00 & .77 & .70 & .66 & .63 & .60 & .58 & \textbf{.57} & \\
+\rowcolor{zebra} & & & ADP & 50.4 & 49 & 48 & 47 & 46 & 44 & 42 & \textbf{40} & \\ \midrule
+90 & 53.2 & 57.7 & ESHF & 1.00 & .76 & .67 & .61 & .58 & .55 & .54 & \textbf{.53} & \\
+ & & & ADP & 52.0 & 51 & 50 & 49 & 48 & 46 & 44 & \textbf{41} & \\ \midrule
+\rowcolor{zebra}95 & 54.2 & 61.2 & ESHF & 1.00 & .69 & .58 & .54 & .51 & \textbf{.49} &  &  & \\
+\rowcolor{zebra} & & & ADP & 53.6 & 53 & 52 & 51 & 50 & \textbf{48} &  &  & \\
+\bottomrule\end{tabular}
+\end{minipage}\begin{minipage}[t]{0.5\linewidth}\centering
+
+\end{minipage}
+}
+
+\note{مقادیر جدول از روی اسکن خوانده و با فرمول بالا بررسی شد؛ دو عدد چاپی جدول اصلی خطای آشکار داشتند و اصلاح شدند: ADP آخر ردیف $\mathrm{DB}=82,\ \mathrm{RH}=45\%$ \pa{۳۳ به‌جای ۵۳} و ADP هشتم ردیف $\mathrm{DB}=78,\ \mathrm{RH}=50\%$ \pa{۴۲ به‌جای ۱۲}.}
+
+%==================== PART 3 ====================
+\clearpage
+\tpart{3.\ Unit Conversion Tables}{۳. جداول تبدیل واحد}
+
+\note{روش خواندن: $1$ واحد \pa{ردیف} $=$ عدد جدول × واحد \pa{ستون}. مثال: ردیف CFM و ستون m$^3$/hr عدد $1.699$ است، یعنی $1\ \mathrm{CFM}=1.699\ \mathrm{m^3/hr}$. همهٔ جدول‌ها از ضرایب دقیق محاسبه شده‌اند.}
+
+\sect{Temperature}{دما}
+{\convfont\renewcommand{\arraystretch}{1.3}\setlength{\tabcolsep}{6pt}
+\noindent\begin{tabular}{@{}ll@{}}\toprule
+\rowcolor{hdr}\textbf{Conversion} & \textbf{Formula}\\ \midrule
+$^\circ$C $\rightarrow$ $^\circ$F & $T(^\circ\mathrm{F})=1.8\,T(^\circ\mathrm{C})+32$\\
+\rowcolor{zebra}$^\circ$F $\rightarrow$ $^\circ$C & $T(^\circ\mathrm{C})=\big(T(^\circ\mathrm{F})-32\big)/1.8$\\
+Temperature difference & $\Delta T(^\circ\mathrm{F})=1.8\,\Delta T(^\circ\mathrm{C})$\\
+\rowcolor{zebra}$^\circ$C $\rightarrow$ K & $T(\mathrm{K})=T(^\circ\mathrm{C})+273.15$\\
+$^\circ$F $\rightarrow$ $^\circ$R & $T(^\circ\mathrm{R})=T(^\circ\mathrm{F})+459.67$\\
+\bottomrule\end{tabular}}
+
+\medskip
+\convhead{Length}{طول}
+{\convfont\setlength{\tabcolsep}{2.6pt}\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{@{}lrrrrr@{}}\toprule
+\rowcolor{hdr}\textbf{From $\downarrow$ \ To $\rightarrow$} & \textbf{m} & \textbf{cm} & \textbf{mm} & \textbf{ft} & \textbf{in}\\ \midrule
+\cellcolor{hdr}\textbf{m} & \textbf{1} & 100 & 1000 & 3.2808 & 39.37\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{cm} & 0.01 & \textbf{1} & 10 & 0.032808 & 0.3937\\
+\cellcolor{hdr}\textbf{mm} & 0.001 & 0.1 & \textbf{1} & 0.0032808 & 0.03937\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{ft} & 0.3048 & 30.48 & 304.8 & \textbf{1} & 12\\
+\cellcolor{hdr}\textbf{in} & 0.0254 & 2.54 & 25.4 & 0.083333 & \textbf{1}\\
+\bottomrule\end{tabular}}
+\medskip
+\convhead{Area}{مساحت}
+{\convfont\setlength{\tabcolsep}{2.6pt}\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{@{}lrrrrr@{}}\toprule
+\rowcolor{hdr}\textbf{From $\downarrow$ \ To $\rightarrow$} & \textbf{m$^2$} & \textbf{cm$^2$} & \textbf{mm$^2$} & \textbf{ft$^2$} & \textbf{in$^2$}\\ \midrule
+\cellcolor{hdr}\textbf{m$^2$} & \textbf{1} & 10000 & 1000000 & 10.764 & 1550\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{cm$^2$} & $1\times10^{-4}$ & \textbf{1} & 100 & 0.0010764 & 0.155\\
+\cellcolor{hdr}\textbf{mm$^2$} & $1\times10^{-6}$ & 0.01 & \textbf{1} & $1.08\times10^{-5}$ & 0.00155\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{ft$^2$} & 0.092903 & 929.03 & 92903 & \textbf{1} & 144\\
+\cellcolor{hdr}\textbf{in$^2$} & $6.45\times10^{-4}$ & 6.4516 & 645.16 & 0.0069444 & \textbf{1}\\
+\bottomrule\end{tabular}}
+\medskip
+\convhead{Volume}{حجم}
+{\convfont\setlength{\tabcolsep}{2.6pt}\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{@{}lrrrrr@{}}\toprule
+\rowcolor{hdr}\textbf{From $\downarrow$ \ To $\rightarrow$} & \textbf{m$^3$} & \textbf{cm$^3$} & \textbf{Liter} & \textbf{ft$^3$} & \textbf{Gallon (US)}\\ \midrule
+\cellcolor{hdr}\textbf{m$^3$} & \textbf{1} & 1000000 & 1000 & 35.315 & 264.17\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{cm$^3$} & $1\times10^{-6}$ & \textbf{1} & 0.001 & $3.53\times10^{-5}$ & $2.64\times10^{-4}$\\
+\cellcolor{hdr}\textbf{Liter} & 0.001 & 1000 & \textbf{1} & 0.035315 & 0.26417\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{ft$^3$} & 0.028317 & 28317 & 28.317 & \textbf{1} & 7.4805\\
+\cellcolor{hdr}\textbf{Gallon (US)} & 0.0037854 & 3785.4 & 3.7854 & 0.13368 & \textbf{1}\\
+\bottomrule\end{tabular}}
+\medskip
+\convhead{Mass}{جرم}
+{\convfont\setlength{\tabcolsep}{2.6pt}\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{@{}lrrr@{}}\toprule
+\rowcolor{hdr}\textbf{From $\downarrow$ \ To $\rightarrow$} & \textbf{kg} & \textbf{g} & \textbf{lb}\\ \midrule
+\cellcolor{hdr}\textbf{kg} & \textbf{1} & 1000 & 2.2046\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{g} & 0.001 & \textbf{1} & 0.0022046\\
+\cellcolor{hdr}\textbf{lb} & 0.45359 & 453.59 & \textbf{1}\\
+\bottomrule\end{tabular}}
+\medskip
+\convhead{Density}{چگالی}
+{\convfont\setlength{\tabcolsep}{2.6pt}\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{@{}lrrrrr@{}}\toprule
+\rowcolor{hdr}\textbf{From $\downarrow$ \ To $\rightarrow$} & \textbf{kg/m$^3$} & \textbf{g/cm$^3$} & \textbf{lb/ft$^3$} & \textbf{lb/gal} & \textbf{slug/ft$^3$}\\ \midrule
+\cellcolor{hdr}\textbf{kg/m$^3$} & \textbf{1} & 0.001 & 0.062428 & 0.0083454 & 0.0019403\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{g/cm$^3$} & 1000 & \textbf{1} & 62.428 & 8.3454 & 1.9403\\
+\cellcolor{hdr}\textbf{lb/ft$^3$} & 16.018 & 0.016018 & \textbf{1} & 0.13368 & 0.031081\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{lb/gal} & 119.83 & 0.11983 & 7.4805 & \textbf{1} & 0.2325\\
+\cellcolor{hdr}\textbf{slug/ft$^3$} & 515.38 & 0.51538 & 32.174 & 4.301 & \textbf{1}\\
+\bottomrule\end{tabular}}
+\medskip
+\convhead{Velocity}{سرعت}
+{\convfont\setlength{\tabcolsep}{2.6pt}\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{@{}lrrrr@{}}\toprule
+\rowcolor{hdr}\textbf{From $\downarrow$ \ To $\rightarrow$} & \textbf{m/s} & \textbf{km/h} & \textbf{ft/s} & \textbf{ft/min}\\ \midrule
+\cellcolor{hdr}\textbf{m/s} & \textbf{1} & 3.6 & 3.2808 & 196.85\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{km/h} & 0.27778 & \textbf{1} & 0.91134 & 54.681\\
+\cellcolor{hdr}\textbf{ft/s} & 0.3048 & 1.0973 & \textbf{1} & 60\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{ft/min} & 0.00508 & 0.018288 & 0.016667 & \textbf{1}\\
+\bottomrule\end{tabular}}
+\medskip
+\convhead{Mass Flow Rate}{دبی جرمی}
+{\convfont\setlength{\tabcolsep}{2.6pt}\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{@{}lrrrr@{}}\toprule
+\rowcolor{hdr}\textbf{From $\downarrow$ \ To $\rightarrow$} & \textbf{kg/s} & \textbf{kg/hr} & \textbf{lb/s} & \textbf{lb/hr}\\ \midrule
+\cellcolor{hdr}\textbf{kg/s} & \textbf{1} & 3600 & 2.2046 & 7936.6\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{kg/hr} & $2.78\times10^{-4}$ & \textbf{1} & $6.12\times10^{-4}$ & 2.2046\\
+\cellcolor{hdr}\textbf{lb/s} & 0.45359 & 1632.9 & \textbf{1} & 3600\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{lb/hr} & $1.26\times10^{-4}$ & 0.45359 & $2.78\times10^{-4}$ & \textbf{1}\\
+\bottomrule\end{tabular}}
+\medskip
+\convhead{Volume Flow Rate}{دبی حجمی}
+{\convfont\setlength{\tabcolsep}{2.6pt}\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{@{}lrrrrrr@{}}\toprule
+\rowcolor{hdr}\textbf{From $\downarrow$ \ To $\rightarrow$} & \textbf{m$^3$/s} & \textbf{m$^3$/hr} & \textbf{L/s} & \textbf{L/min} & \textbf{CFM} & \textbf{GPM}\\ \midrule
+\cellcolor{hdr}\textbf{m$^3$/s} & \textbf{1} & 3600 & 1000 & 60000 & 2118.9 & 15850\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{m$^3$/hr} & $2.78\times10^{-4}$ & \textbf{1} & 0.27778 & 16.667 & 0.58858 & 4.4029\\
+\cellcolor{hdr}\textbf{L/s} & 0.001 & 3.6 & \textbf{1} & 60 & 2.1189 & 15.85\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{L/min} & $1.67\times10^{-5}$ & 0.06 & 0.016667 & \textbf{1} & 0.035315 & 0.26417\\
+\cellcolor{hdr}\textbf{CFM} & $4.72\times10^{-4}$ & 1.699 & 0.47195 & 28.317 & \textbf{1} & 7.4805\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{GPM} & $6.31\times10^{-5}$ & 0.22712 & 0.06309 & 3.7854 & 0.13368 & \textbf{1}\\
+\bottomrule\end{tabular}}
+\medskip
+\convhead{Pressure}{فشار}
+{\convfont\setlength{\tabcolsep}{2.6pt}\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{@{}lrrrrrrrrrrr@{}}\toprule
+\rowcolor{hdr}\textbf{From $\downarrow$ \ To $\rightarrow$} & \textbf{Pa} & \textbf{kPa} & \textbf{bar} & \textbf{atm} & \textbf{mm\,H$_2$O} & \textbf{m\,H$_2$O} & \textbf{in\,H$_2$O} & \textbf{ft\,H$_2$O} & \textbf{mm\,Hg} & \textbf{in\,Hg} & \textbf{psi}\\ \midrule
+\cellcolor{hdr}\textbf{Pa} & \textbf{1} & 0.001 & $1\times10^{-5}$ & $9.87\times10^{-6}$ & 0.10197 & $1.02\times10^{-4}$ & 0.0040146 & $3.35\times10^{-4}$ & 0.0075006 & $2.95\times10^{-4}$ & $1.45\times10^{-4}$\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{kPa} & 1000 & \textbf{1} & 0.01 & 0.0098692 & 101.97 & 0.10197 & 4.0146 & 0.33455 & 7.5006 & 0.2953 & 0.14504\\
+\cellcolor{hdr}\textbf{bar} & 100000 & 100 & \textbf{1} & 0.98692 & 10197 & 10.197 & 401.46 & 33.455 & 750.06 & 29.53 & 14.504\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{atm} & 101325 & 101.33 & 1.0132 & \textbf{1} & 10332 & 10.332 & 406.78 & 33.899 & 760 & 29.921 & 14.696\\
+\cellcolor{hdr}\textbf{mm\,H$_2$O} & 9.8066 & 0.0098067 & $9.81\times10^{-5}$ & $9.68\times10^{-5}$ & \textbf{1} & 0.001 & 0.03937 & 0.0032808 & 0.073556 & 0.0028959 & 0.0014223\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{m\,H$_2$O} & 9806.6 & 9.8066 & 0.098067 & 0.096784 & 1000 & \textbf{1} & 39.37 & 3.2808 & 73.556 & 2.8959 & 1.4223\\
+\cellcolor{hdr}\textbf{in\,H$_2$O} & 249.09 & 0.24909 & 0.0024909 & 0.0024583 & 25.4 & 0.0254 & \textbf{1} & 0.083333 & 1.8683 & 0.073556 & 0.036127\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{ft\,H$_2$O} & 2989.1 & 2.9891 & 0.029891 & 0.0295 & 304.8 & 0.3048 & 12 & \textbf{1} & 22.42 & 0.88267 & 0.43353\\
+\cellcolor{hdr}\textbf{mm\,Hg} & 133.32 & 0.13332 & 0.0013332 & 0.0013158 & 13.595 & 0.013595 & 0.53524 & 0.044603 & \textbf{1} & 0.03937 & 0.019337\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{in\,Hg} & 3386.4 & 3.3864 & 0.033864 & 0.033421 & 345.32 & 0.34532 & 13.595 & 1.1329 & 25.4 & \textbf{1} & 0.49115\\
+\cellcolor{hdr}\textbf{psi} & 6894.8 & 6.8948 & 0.068948 & 0.068046 & 703.07 & 0.70307 & 27.68 & 2.3067 & 51.715 & 2.036 & \textbf{1}\\
+\bottomrule\end{tabular}}
+\convnote{\pa{برای آب: ۴ درجهٔ سانتی‌گراد \;|\; برای جیوه: ۰ درجهٔ سانتی‌گراد؛ $1\ \mathrm{psi}=2.307\ \mathrm{ft\,H_2O}$}}
+\medskip
+\convhead{Power / Heat Rate}{توان و نرخ حرارت}
+{\convfont\setlength{\tabcolsep}{2.6pt}\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{@{}lrrrrrrr@{}}\toprule
+\rowcolor{hdr}\textbf{From $\downarrow$ \ To $\rightarrow$} & \textbf{W} & \textbf{kW} & \textbf{kcal/hr} & \textbf{HP} & \textbf{Btu/hr} & \textbf{MBH} & \textbf{Ton R.}\\ \midrule
+\cellcolor{hdr}\textbf{W} & \textbf{1} & 0.001 & 0.85985 & 0.001341 & 3.4121 & 0.0034121 & $2.84\times10^{-4}$\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{kW} & 1000 & \textbf{1} & 859.85 & 1.341 & 3412.1 & 3.4121 & 0.28435\\
+\cellcolor{hdr}\textbf{kcal/hr} & 1.163 & 0.001163 & \textbf{1} & 0.0015596 & 3.9683 & 0.0039683 & $3.31\times10^{-4}$\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{HP} & 745.7 & 0.7457 & 641.19 & \textbf{1} & 2544.4 & 2.5444 & 0.21204\\
+\cellcolor{hdr}\textbf{Btu/hr} & 0.29307 & $2.93\times10^{-4}$ & 0.252 & $3.93\times10^{-4}$ & \textbf{1} & $1\times10^{-3}$ & $8.33\times10^{-5}$\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{MBH} & 293.07 & 0.29307 & 252 & 0.39301 & 1000 & \textbf{1} & 0.083333\\
+\cellcolor{hdr}\textbf{Ton R.} & 3516.9 & 3.5169 & 3023.9 & 4.7162 & 12000 & 12 & \textbf{1}\\
+\bottomrule\end{tabular}}
+\convnote{HP: اسب بخار مکانیکی \;|\; $1\ \mathrm{Ton\ R.}=12000\ \mathrm{Btu/hr}$ \;|\; $\mathrm{MBH}=1000\ \mathrm{Btu/hr}$}
+\medskip
+\convhead{Energy}{انرژی}
+{\convfont\setlength{\tabcolsep}{2.6pt}\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{@{}lrrrrrr@{}}\toprule
+\rowcolor{hdr}\textbf{From $\downarrow$ \ To $\rightarrow$} & \textbf{J} & \textbf{kJ} & \textbf{kcal} & \textbf{Btu} & \textbf{kWh} & \textbf{Ton$\cdot$hr}\\ \midrule
+\cellcolor{hdr}\textbf{J} & \textbf{1} & 0.001 & $2.39\times10^{-4}$ & $9.48\times10^{-4}$ & $2.78\times10^{-7}$ & $7.9\times10^{-8}$\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{kJ} & 1000 & \textbf{1} & 0.23885 & 0.94782 & $2.78\times10^{-4}$ & $7.9\times10^{-5}$\\
+\cellcolor{hdr}\textbf{kcal} & 4186.8 & 4.1868 & \textbf{1} & 3.9683 & 0.001163 & $3.31\times10^{-4}$\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{Btu} & 1055.1 & 1.0551 & 0.252 & \textbf{1} & $2.93\times10^{-4}$ & $8.33\times10^{-5}$\\
+\cellcolor{hdr}\textbf{kWh} & 3600000 & 3600 & 859.85 & 3412.1 & \textbf{1} & 0.28435\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{Ton$\cdot$hr} & $1.266\times10^{7}$ & 12661 & 3023.9 & 12000 & 3.5169 & \textbf{1}\\
+\bottomrule\end{tabular}}
+\medskip
+\convhead{Specific Heat}{ظرفیت گرمایی ویژه}
+{\convfont\setlength{\tabcolsep}{2.6pt}\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{@{}lrrr@{}}\toprule
+\rowcolor{hdr}\textbf{From $\downarrow$ \ To $\rightarrow$} & \textbf{kJ/kg$\cdot$K} & \textbf{kcal/kg$\cdot$K} & \textbf{Btu/lb$\cdot^\circ$F}\\ \midrule
+\cellcolor{hdr}\textbf{kJ/kg$\cdot$K} & \textbf{1} & 0.23885 & 0.23885\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{kcal/kg$\cdot$K} & 4.1868 & \textbf{1} & 1\\
+\cellcolor{hdr}\textbf{Btu/lb$\cdot^\circ$F} & 4.1868 & 1 & \textbf{1}\\
+\bottomrule\end{tabular}}
+\medskip
+\convhead{Specific Enthalpy}{آنتالپی ویژه}
+{\convfont\setlength{\tabcolsep}{2.6pt}\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{@{}lrrr@{}}\toprule
+\rowcolor{hdr}\textbf{From $\downarrow$ \ To $\rightarrow$} & \textbf{kJ/kg} & \textbf{kcal/kg} & \textbf{Btu/lb}\\ \midrule
+\cellcolor{hdr}\textbf{kJ/kg} & \textbf{1} & 0.23885 & 0.42992\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{kcal/kg} & 4.1868 & \textbf{1} & 1.8\\
+\cellcolor{hdr}\textbf{Btu/lb} & 2.326 & 0.55556 & \textbf{1}\\
+\bottomrule\end{tabular}}
+\medskip
+\convhead{Heat Transfer Coefficient (U, h)}{ضریب انتقال حرارت}
+{\convfont\setlength{\tabcolsep}{2.6pt}\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{@{}lrrr@{}}\toprule
+\rowcolor{hdr}\textbf{From $\downarrow$ \ To $\rightarrow$} & \textbf{W/m$^2$K} & \textbf{kcal/hr$\cdot$m$^2$K} & \textbf{Btu/hr$\cdot$ft$^2\cdot^\circ$F}\\ \midrule
+\cellcolor{hdr}\textbf{W/m$^2$K} & \textbf{1} & 0.85985 & 0.17611\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{kcal/hr$\cdot$m$^2$K} & 1.163 & \textbf{1} & 0.20482\\
+\cellcolor{hdr}\textbf{Btu/hr$\cdot$ft$^2\cdot^\circ$F} & 5.6783 & 4.8824 & \textbf{1}\\
+\bottomrule\end{tabular}}
+\medskip
+\convhead{Thermal Conductivity (k)}{ضریب هدایت حرارتی}
+{\convfont\setlength{\tabcolsep}{2.6pt}\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{@{}lrrrr@{}}\toprule
+\rowcolor{hdr}\textbf{From $\downarrow$ \ To $\rightarrow$} & \textbf{W/m$\cdot$K} & \textbf{kcal/hr$\cdot$m$\cdot$K} & \textbf{Btu/hr$\cdot$ft$\cdot^\circ$F} & \textbf{Btu$\cdot$in/hr$\cdot$ft$^2\cdot^\circ$F}\\ \midrule
+\cellcolor{hdr}\textbf{W/m$\cdot$K} & \textbf{1} & 0.85985 & 0.57779 & 6.9335\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{kcal/hr$\cdot$m$\cdot$K} & 1.163 & \textbf{1} & 0.67197 & 8.0636\\
+\cellcolor{hdr}\textbf{Btu/hr$\cdot$ft$\cdot^\circ$F} & 1.7307 & 1.4882 & \textbf{1} & 12\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{Btu$\cdot$in/hr$\cdot$ft$^2\cdot^\circ$F} & 0.14423 & 0.12401 & 0.083333 & \textbf{1}\\
+\bottomrule\end{tabular}}
+\medskip
+\convhead{Thermal Resistance (R-value)}{مقاومت حرارتی}
+{\convfont\setlength{\tabcolsep}{2.6pt}\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{@{}lrr@{}}\toprule
+\rowcolor{hdr}\textbf{From $\downarrow$ \ To $\rightarrow$} & \textbf{m$^2$K/W} & \textbf{hr$\cdot$ft$^2\cdot^\circ$F/Btu}\\ \midrule
+\cellcolor{hdr}\textbf{m$^2$K/W} & \textbf{1} & 5.6783\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{hr$\cdot$ft$^2\cdot^\circ$F/Btu} & 0.17611 & \textbf{1}\\
+\bottomrule\end{tabular}}
+\medskip
+\convhead{Heat Flux}{شار حرارتی}
+{\convfont\setlength{\tabcolsep}{2.6pt}\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{@{}lrrr@{}}\toprule
+\rowcolor{hdr}\textbf{From $\downarrow$ \ To $\rightarrow$} & \textbf{W/m$^2$} & \textbf{kcal/hr$\cdot$m$^2$} & \textbf{Btu/hr$\cdot$ft$^2$}\\ \midrule
+\cellcolor{hdr}\textbf{W/m$^2$} & \textbf{1} & 0.85985 & 0.317\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{kcal/hr$\cdot$m$^2$} & 1.163 & \textbf{1} & 0.36867\\
+\cellcolor{hdr}\textbf{Btu/hr$\cdot$ft$^2$} & 3.1546 & 2.7125 & \textbf{1}\\
+\bottomrule\end{tabular}}
+\medskip
+\convhead{Humidity Ratio}{نسبت رطوبت}
+{\convfont\setlength{\tabcolsep}{2.6pt}\renewcommand{\arraystretch}{1.25}
+\noindent\begin{tabular}{@{}lrrr@{}}\toprule
+\rowcolor{hdr}\textbf{From $\downarrow$ \ To $\rightarrow$} & \textbf{kg/kg (lb/lb)} & \textbf{g/kg} & \textbf{grain/lb}\\ \midrule
+\cellcolor{hdr}\textbf{kg/kg (lb/lb)} & \textbf{1} & 1000 & 7000\\
+\rowcolor{zebra}\cellcolor{hdr}\textbf{g/kg} & 0.001 & \textbf{1} & 7\\
+\cellcolor{hdr}\textbf{grain/lb} & $1.43\times10^{-4}$ & 0.14286 & \textbf{1}\\
+\bottomrule\end{tabular}}
+\convnote{$1\ \mathrm{lb}=7000\ \mathrm{grain}$ \;|\; $\omega\,[\mathrm{gr/lb}]=7000\,\omega\,[\mathrm{lb/lb}]$}
+
+\clearpage
+\sect{Conversion Factors Hidden in the Formulas}{ضرایب پنهان در فرمول‌های جزوه}
+{\convfont\renewcommand{\arraystretch}{1.35}\setlength{\tabcolsep}{4pt}
+\noindent\begin{tabular}{@{}p{2.3cm}p{5.8cm}p{9.3cm}@{}}\toprule
+\rowcolor{hdr}\textbf{Constant} & \textbf{Where used} & \textbf{Derivation}\\ \midrule
+$4.5$ & $Q_T=4.5\,\lambda\,\mathrm{CFM}\,\Delta h$ & $60\ \mathrm{min/hr}\times0.075\ \mathrm{lb/ft^3}$ \quad (Btu/hr, $\Delta h$ in Btu/lb)\\
+\rowcolor{zebra}$1.08$ & $Q_S=1.08\,\mathrm{CFM}\,\Delta T$ & $60\times0.075\times0.24\ \mathrm{Btu/lb\cdot{}^\circ F}=1.08$\\
+$0.68$ & $Q_L=0.68\,\mathrm{CFM}\,\Delta W$ & $60\times0.075\times h_{fg}/7000$ with $h_{fg}\approx1060$: $0.681$ \ ($\Delta W$ in gr/lb; with $1076$: $0.692$)\\
+\rowcolor{zebra}$500$ & $Q=500\,\mathrm{GPM}\,\Delta T$ & $60\ \mathrm{min/hr}\times8.34\ \mathrm{lb/gal}\times1\ \mathrm{Btu/lb\cdot{}^\circ F}=500.4$\\
+$1.2\ \mathrm{kW}$ & $Q_S=1.2\,\dot V\,\Delta T$ (SI) & $\rho c_p=1.2\ \mathrm{kg/m^3}\times1.005\ \mathrm{kJ/kg\cdot K}=1.206$ per $\mathrm{m^3/s\cdot K}$; with $\dot V$ in $\mathrm{m^3/h}$: $Q[\mathrm{W}]=0.335\,\dot V\,\Delta T$\\
+\rowcolor{zebra}$4005$ & $V=4005\sqrt{VP}$ & $60\sqrt{2g\cdot5.202/0.075}$: $V$ in ft/min, $VP$ in in\,H$_2$O, standard air $0.075\ \mathrm{lb/ft^3}$. SI: $V=1.29\sqrt{P_v}$ ($\rho=1.2$, $P_v$ in Pa, $V$ in m/s)\\
+$6356$ & Fan $HP=Q\,\Delta P/6356$ & $33000\ \mathrm{ft\cdot lbf/min\cdot HP}\ \div\ 5.19\ \mathrm{lbf/ft^2}$ per in\,H$_2$O ($Q$ in CFM)\\
+\rowcolor{zebra}$3960$ & Pump $HP=Q\,H/3960$ & $33000\div8.33\ \mathrm{lb/gal}$ ($Q$ in GPM, $H$ in ft of water)\\
+$102$, $367$ & Pump $kW=QH/102$ or $QH/367$ & $\rho g=9.81$: $Q$ in L/s with $H$ in m (÷102); $Q$ in m$^3$/h with $H$ in m (÷367)\\
+\rowcolor{zebra}$1\ \mathrm{kPa}$ & Fan $kW=Q\,\Delta P$ & $Q$ in m$^3$/s and $\Delta P$ in kPa give kW directly\\
+$8840.4$ & $\dot m\,[\mathrm{gal/h}]=Q_L/8840.4$ & $1060\ \mathrm{Btu/lb}\times8.34\ \mathrm{lb/gal}$ \ (with $970$: $8090$; with $950$: $7923$)\\
+\rowcolor{zebra}$3.413$ & $\mathrm{EER}=3.413\,\mathrm{COP}$ & $1\ \mathrm{W}=3.413\ \mathrm{Btu/hr}$\\
+$12000$ & Ton of refrigeration & $1\ \mathrm{Ton}=12000\ \mathrm{Btu/hr}=3.517\ \mathrm{kW}=3024\ \mathrm{kcal/hr}$\\
+\rowcolor{zebra}$7000$ & $\omega$ in gr/lb & $1\ \mathrm{lb}=7000\ \mathrm{grain}$ \quad ($W[\mathrm{gr/lb}]=7000\,\omega[\mathrm{lb/lb}]$)\\
+$60$ & $\mathrm{ACH}=60\,\mathrm{CFM}/V$ & minutes per hour ($V$ in ft$^3$); SI: $\mathrm{ACH}=Q[\mathrm{m^3/h}]/V[\mathrm{m^3}]$\\
+\rowcolor{zebra}$62.4$ & Water density & $62.4\ \mathrm{lb/ft^3}=1000\ \mathrm{kg/m^3}$; $1\ \mathrm{gal}=8.34\ \mathrm{lb}$ ($=8.33$ in common use); $1\ \mathrm{ft^3}=7.481\ \mathrm{gal}$\\
+$0.075$ & Air density & $0.075\ \mathrm{lb/ft^3}\approx1.2\ \mathrm{kg/m^3}$ ($1.225\ \mathrm{kg/m^3}=0.0765\ \mathrm{lb/ft^3}$ at $15^\circ$C)\\
+\rowcolor{zebra}$287,\ 461$ & $R_a,\ R_v$ & $\mathrm{J/kg\cdot K}$; $R_a=53.35\ \mathrm{ft\cdot lbf/lb\cdot R}$\\
+$1055$ & Heat & $1\ \mathrm{Btu}=1055\ \mathrm{J}=252\ \mathrm{cal}$, $\ 1\ \mathrm{Btu/lb}=2.326\ \mathrm{kJ/kg}$, $\ 1\ \mathrm{kcal}=4.1868\ \mathrm{kJ}$\\
+\bottomrule\end{tabular}}
+
+\medskip
+\sect{Standard Conditions \& Material Properties}{شرایط استاندارد و خواص مواد}
+{\convfont\renewcommand{\arraystretch}{1.3}\setlength{\tabcolsep}{6pt}
+\noindent\begin{tabular}{@{}lrrrr@{}}\toprule
+\rowcolor{hdr}\textbf{Density} & \textbf{Water} & \textbf{Air} & \textbf{Gasoline} & \textbf{Unit}\\ \midrule
+SI & 1000 & 1.2 & 860 & kg/m$^3$\\
+\rowcolor{zebra}SI & 1 & 0.0012 & 0.86 & g/cm$^3$\\
+IP & 62.4 & 0.0749 & 53.66 & lb/ft$^3$\\ \bottomrule\end{tabular}\hspace{10mm}
+\begin{tabular}{@{}lrrrr@{}}\toprule
+\rowcolor{hdr}\textbf{Specific heat $c_p$} & \textbf{Water} & \textbf{Air} & \textbf{Steam} & \textbf{Ice}\\ \midrule
+kJ/kg$\cdot$K & 4.19 & 1.005 & 1.87--2.01 & 2.09\\
+\rowcolor{zebra}Btu/lb$\cdot^\circ$F & 1.00 & 0.24 & 0.45--0.48 & 0.50\\ \bottomrule\end{tabular}}
+\medskip
+
+{\convfont\renewcommand{\arraystretch}{1.3}\setlength{\tabcolsep}{6pt}
+\noindent\begin{tabular}{@{}lrr@{}}\toprule
+\rowcolor{hdr}\textbf{Fuel heating value} & \textbf{Mass basis} & \textbf{Volume basis}\\ \midrule
+Gasoline & 9800 kcal/kg $=$ 41030 kJ/kg & --\\
+\rowcolor{zebra}Natural gas & -- & 9000 kcal/m$^3$ $=$ 37700 kJ/m$^3$\\ \bottomrule\end{tabular}}
+\note{ارزش حرارتی بنزین در جدول اصلی $40100\ \mathrm{kJ/kg}$ آمده بود که با $9800\ \mathrm{kcal/kg}$ سازگار نیست \pa{$9800\times4.1868=41030$}؛ مقدار سازگار نوشته شد. در جدول اصلی ظرفیت گرمایی بخار $2.01\ \mathrm{kJ/kg\cdot K}$ و $0.48\ \mathrm{Btu/lb\cdot F}$ بود \pa{سازگار با هم}، ولی در جزوهٔ فرمول‌ها $1.87$ با $0.45$ متناظر است؛ هر دو مقدار در مراجع به کار می‌روند.}
+
+\end{document}
